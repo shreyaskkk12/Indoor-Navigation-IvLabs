@@ -29,7 +29,7 @@ Software:
 - Ubuntu 20.04
 - Python3
 - ROS-Noetic
-- Docker Image for ROS-Melodic [link to Turtlebot2.zip]
+- Docker Image for ROS-Melodic - [Turtlebot2.zip](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/files/12776727/Turtlebot2.zip)
 - OpenCV 4.8.x (Noetic)
 - OpenCV 4.2.x (Melodic)
 - { Optional } Gazebo simulation package 
