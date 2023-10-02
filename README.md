@@ -1,38 +1,76 @@
-# **Indoor Navigation using ArUco Markers**
-## <a name="_9ga512b2el5h"></a>Description.
+# ﻿Indoor Navigation using ArUco Markers
 
-In our current project, we've used Turtlebot, a highly adaptable robotic platform, to tackle the exciting challenge of autonomous indoor navigation. Central to our approach is using ArUco markers, a sophisticated yet cost-effective computer vision technology, which plays a pivotal role in enabling the robot's autonomous exploration within unfamiliar indoor environments. This innovative solution presents promising prospects for warehouse management.
+## Description
 
-## <a name="_w1ig0sl0aaz"></a><a name="_ddw2x2js8guw"></a>Timeline.
-1. Installed Ubuntu 20.04
-1. Installed ROS-Noetic using  <https://wiki.ros.org/noetic/Installation/Ubuntu>
-1. Studied ROS using <http://wiki.ros.org/ROS/Tutorials>
-1. Performed tasks on turtlesim
-1. Studied Hector and Gmapping, and its implementation in turtlebot3 simulation on gazebo
-   1. Turtlebot3 simulation using <https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/>
-   1. SLAM simulation using <https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/>
-1. Studied OpenCV for camera calibration and aruco detection
-   1. Camera Calibration <https://www.youtube.com/watch?v=JHeNger8B2E&ab_channel=AiPhile>
-   1. Aruco detection and pose estimation <https://www.youtube.com/watch?v=mn-M6Qzx6SE&t=2s&ab_channel=AiPhile>
-1. Installed docker for ROS-melodic
-   1. Install Docker
-      <https://docs.docker.com/engine/install/ubuntu/>
-      <https://docs.docker.com/engine/install/linux-postinstall/>
-   1. ROS-melodic installed  - TurtleBot2.zip
-1. Gazebo simulation of autonomous navigation using aruco markers	
-1. Implementation of code on hardware
-1. Added Lidar usage for obstacle avoidance using <https://hackmd.io/@soham24/SJebiuww3>
+In our project, we've employed Turtlebot for autonomous indoor navigation which involves using marker-based localization, like ArUco. These markers act as crucial reference points for the robot's autonomous movement within unfamiliar indoor spaces. This approach is cost-effective, simply requiring the deployment of marker patterns and protective measures. For the completion of this project, we also made use of ROS, OpenCV, and Gazebo simulation, enabling us to navigate, control, and process data for various robotic applications, which could include warehouse management
 
-## <a name="_mjez62lfwq1f"></a><a name="_z1ycn3mo7n7y"></a>Requirements.
+## Methodology
+
+- **Turtlesim**
+
+We performed simple tasks on turtlesim node to get practical knowledge about ROS.
+How to write code in ROS, implement different publisher and subscriber nodes.
+
+![Circle](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/0b62366a-62af-420b-8637-6cbe254db07c)
+![Follower](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/cf1a9fab-80ef-4ff1-b149-fcc0a4eb88d7)
+![GoToGoal](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/829176c4-1675-45ef-821f-0036aa4a9588)
+![spiral](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/ac06461e-3083-4cb3-99f0-d0db776115a3)
+
+
+
+- **Hector and G-mapping**
+
+Hector SLAM and Gmapping are both algorithms used for mapping and localization in robotics. Hector SLAM is a laser-based algorithm that can only afford indoor use, as the map created is small, while Gmapping can be used both indoors and outdoors. Hector SLAM is more efficient than Gmapping in terms of map drawing, but it has a limit on the size of the map it can create. On the other hand, Gmapping has no such limit and is more versatile than Hector SLAM
+![Hector Mapping](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/460920a5-6d15-4d2b-b6ef-1b3d86b5347e)
+![GMapping](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/46dbf6e9-b57e-4bb1-a68d-d7ee38f8ce56)
+
+
+- **Camera Calibration** 
+
+The process of estimating the parameters of a camera is called camera calibration. This includes recovering two kinds of parameters 
+
+1\. **Internal parameters** of the camera/lens system. E.g. focal length, optical center, and radial distortion coefficients of the lens                                                                 
+2. **External parameters**: This refers to the orientation (rotation and translation) of the camera with respect to some world coordinate system                                                               We used a checkerboard for the calibration of the camera as its pattern is easy to detect in an image, also its corners have a sharp gradient in two directions, so it is easy to detect the corners. 
+
+![Callibration](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/425b5acf-4fb0-4b32-b460-c4220e20e297)
+
+
+
+- **Aruco Detection and Pose Estimation**
+
+We used OpenCV’s aruco library for the detection and pose estimation of aruco markers.
+
+![ArucoDetection](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/e2f04d65-2a48-43ef-8ab9-ec74e880b834)
+
+
+- **Gazebo Simulation**
+
+We used two nodes for navigation. The camera node detects the markers and publishes data about markers like their IDs and distance. Nav node subscribes data from the camera node and publishes velocity commands to turtlebot. 
+We used turtlebot’s ‘waffle\_pi’ model for simulation as it comes with a camera. To get camera information we created a subscriber in the camera node.
+
+Working :
+Nav node publishes velocity commands so turtlebot moves in a square loop until it finds any marker.  After finding the marker bot will do a task assigned to that ID. We assign a simple task to each ID. The bot should go towards markers up to a certain distance and then again start searching for another marker. 
+
+![ezgif com-video-to-gif](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/a21c4525-08ee-471b-933f-c309023ac8c0)
+
+
+- **Implementation on Hardware**
+
+Our turtlebot model was “burger”, which requires ‘ros-melodic’. So we require docker to create a ros-melodic workspace.
+We also had to change our Cam node code such that it takes video input from a webcam instead of a subscriber.
+
+
+## Requirements.
+
 Software:
 
 - Ubuntu 20.04
 - Python3
 - ROS-Noetic
-- Docker Image for ROS-Melodic - [Turtlebot2.zip](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/files/12776727/Turtlebot2.zip)
+- Docker Image for ROS-Melodic
 - OpenCV 4.8.x (Noetic)
 - OpenCV 4.2.x (Melodic)
-- { Optional } Gazebo simulation package 
+- Gazebo simulation package 
 
 Hardware:
 
@@ -40,12 +78,26 @@ Hardware:
 - Webcam
 - YdLidar
 
-## <a name="_9xnafqf8j77j"></a>How to use the Project.
+## How to use the Project.
+### <a name="_q09s3zjlqn8o"></a>**For Simulation**
+1. Make sure you have all the software installed.
+1. Create a catkin package
+   1. Go to `cd ~/catkin\_ws/src`
+   1. Do `catkin\_create\_pkg indoor\_nav rospy turtlesim geometry\_msgs sensor\_msgs std\_msgs`
+   1. Go back to `cd ~/catkin\_ws` 
+   1. Do `catkin\_make`
+1. Put camFeed.py, velcmds.py and markers.launch (or any gazebo world) in your catkin package and make them executable files.
+1. In your terminal, run the following code:
+   1. `roslaunch indoor\_nav markers.launch`
+   1. `rosrun indoor\_nav cam.py`
+   1. `rosrun indoor\_nav navi.py`
+
+### <a name="_wwhunr977nm1"></a>**For Hardware**
 1. Make sure you have all the software installed and hardware at hand.
 1. Create a catkin package in **both**, your docker container (ROS-melodic) as well as your main device (ROS-noetic)
    1. Go to `cd ~/catkin\_ws/src`
    1. Do `catkin\_create\_pkg indoor\_nav rospy turtlesim geometry\_msgs sensor\_msgs std\_msgs`
-   1. Go back to `cd ~/catkin\_ws` 
+   1. Go back to `cd ~/catkin\_ws `
    1. Do `catkin\_make`
 1. Put lidar\_data.py code in your ROS-Noetic package and camera.py, MultiMatrix.npz, and navi.py code as well as a lidar\_data.txt file in your ROS-melodic package, and make these all executable files.
 1. Make sure to change calib\_data\_path in camera.py to MultiMatrix.npz path. Also, change lidar\_data\_path in lidar.py to the relative path of lidar\_data.txt to your ROS-noetic terminal, and in navi.py to the relative path to your container.
@@ -60,14 +112,3 @@ Hardware:
    1. `rosrun camera.py`
    1. `rosrun navi.py`
 
-## <a name="_44z702ozcbnp"></a>Results.
-![Circle](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/7886d773-05b7-4da4-b53d-359e388bd1bc)
-![Follower](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/f5053ae6-de9c-4cb3-83d3-6f92bf7d8f5c)
-![GoToGoal](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/1d305525-d19c-492e-ab37-73c582553eaf)
-![spiral](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/bddc54fe-f938-4c2e-9e18-fbbafa4948e6)
-![SLAM](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/80864bf2-750e-4c82-afd8-e83bd4d40c03)
-![Callibration](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/49e69d38-7107-448e-8964-b4660f910c96)
-![ArucoDetection](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/40dc7f21-98fd-468c-a645-b57c4b78094e)
-![SimulationDetection](https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/79d9cac0-ecdb-48a3-aff2-be8a78987bdc)
-
-https://github.com/ShantanuRenghe/Indoor-Navigation-IvLabs/assets/128238705/a4e8cb60-965c-4dd5-a204-07aa2006ca37
