@@ -11,18 +11,24 @@ In our project, we've employed Turtlebot for autonomous indoor navigation which 
 We performed simple tasks on turtlesim node to get practical knowledge about ROS.
 How to write code in ROS, implement different publisher and subscriber nodes.
 
-![Circle](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/0b62366a-62af-420b-8637-6cbe254db07c)
-![Follower](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/cf1a9fab-80ef-4ff1-b149-fcc0a4eb88d7)
-![GoToGoal](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/829176c4-1675-45ef-821f-0036aa4a9588)
-![spiral](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/ac06461e-3083-4cb3-99f0-d0db776115a3)
+
+| <img src="https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/0b62366a-62af-420b-8637-6cbe254db07c" width="width_of_img" height="height" /> | <img src="https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/ac06461e-3083-4cb3-99f0-d0db776115a3" width="width_of_img2" height="height2" /> |
+| :--: | :--: |
+| Circle | Spiral |
+
+| <img src="https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/829176c4-1675-45ef-821f-0036aa4a9588" width="width_of_img" height="height" /> | <img src="https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/cf1a9fab-80ef-4ff1-b149-fcc0a4eb88d7" width="width_of_img2" height="height2" /> |
+| :--: | :--: |
+| Go To Goal | Follower |
 
 
 
-- **Hector and G-mapping**
+- **SLAM - Hector and G-mapping**
 
 Hector SLAM and Gmapping are both algorithms used for mapping and localization in robotics. Hector SLAM is a laser-based algorithm that can only afford indoor use, as the map created is small, while Gmapping can be used both indoors and outdoors. Hector SLAM is more efficient than Gmapping in terms of map drawing, but it has a limit on the size of the map it can create. On the other hand, Gmapping has no such limit and is more versatile than Hector SLAM
-![Hector Mapping](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/460920a5-6d15-4d2b-b6ef-1b3d86b5347e)
-![GMapping](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/46dbf6e9-b57e-4bb1-a68d-d7ee38f8ce56)
+
+| <img src="https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/460920a5-6d15-4d2b-b6ef-1b3d86b5347e" width="width_of_img" height="height" /> | <img src="https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/46dbf6e9-b57e-4bb1-a68d-d7ee38f8ce56" width="width_of_img2" height="height2" /> |
+| :--: | :--: |
+| Hector Mapping | GMapping |
 
 
 - **Camera Calibration** 
@@ -60,7 +66,7 @@ Our turtlebot model was “burger”, which requires ‘ros-melodic’. So we re
 We also had to change our Cam node code such that it takes video input from a webcam instead of a subscriber.
 
 
-## Requirements.
+## Requirements
 
 Software:
 
@@ -78,9 +84,8 @@ Hardware:
 - Webcam
 - YdLidar
 
-## How to use the Project.
+## How to use the Project
 ### <a name="_q09s3zjlqn8o"></a>**For Simulation**
-1. Make sure you have all the software installed.
 1. Create a catkin package
    1. Go to `cd ~/catkin\_ws/src`
    1. Do `catkin\_create\_pkg indoor\_nav rospy turtlesim geometry\_msgs sensor\_msgs std\_msgs`
@@ -93,7 +98,6 @@ Hardware:
    1. `rosrun indoor\_nav navi.py`
 
 ### <a name="_wwhunr977nm1"></a>**For Hardware**
-1. Make sure you have all the software installed and hardware at hand.
 1. Create a catkin package in **both**, your docker container (ROS-melodic) as well as your main device (ROS-noetic)
    1. Go to `cd ~/catkin\_ws/src`
    1. Do `catkin\_create\_pkg indoor\_nav rospy turtlesim geometry\_msgs sensor\_msgs std\_msgs`
@@ -112,3 +116,6 @@ Hardware:
    1. `rosrun camera.py`
    1. `rosrun navi.py`
 
+## Results
+
+To be added :/
