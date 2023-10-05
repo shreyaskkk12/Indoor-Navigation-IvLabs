@@ -35,7 +35,7 @@ Hector SLAM and Gmapping are both algorithms used for mapping and localization i
 
 The process of estimating the parameters of a camera is called camera calibration. This includes recovering two kinds of parameters 
 
-1\. **Internal parameters** of the camera/lens system. E.g. focal length, optical center, and radial distortion coefficients of the lens                                                                 
+1. **Internal parameters** of the camera/lens system. E.g. focal length, optical center, and radial distortion coefficients of the lens                                                                 
 2. **External parameters**: This refers to the orientation (rotation and translation) of the camera with respect to some world coordinate system                                                               We used a checkerboard for the calibration of the camera as its pattern is easy to detect in an image, also its corners have a sharp gradient in two directions, so it is easy to detect the corners. 
 
 ![Callibration](https://github.com/shreyaskkk12/Indoor-Navigation-IvLabs/assets/128238705/425b5acf-4fb0-4b32-b460-c4220e20e297)
@@ -52,7 +52,7 @@ We used OpenCV’s aruco library for the detection and pose estimation of aruco 
 - **Gazebo Simulation**
 
 We used two nodes for navigation. The camera node detects the markers and publishes data about markers like their IDs and distance. Nav node subscribes data from the camera node and publishes velocity commands to turtlebot. 
-We used turtlebot’s ‘waffle\_pi’ model for simulation as it comes with a camera. To get camera information we created a subscriber in the camera node.
+We used turtlebot’s ‘waffle_pi’ model for simulation as it comes with a camera. To get camera information we created a subscriber in the camera node.
 
 Working :
 Nav node publishes velocity commands so turtlebot moves in a square loop until it finds any marker.  After finding the marker bot will do a task assigned to that ID. We assign a simple task to each ID. The bot should go towards markers up to a certain distance and then again start searching for another marker. 
@@ -87,30 +87,30 @@ Hardware:
 ## How to use the Project
 ### <a name="_q09s3zjlqn8o"></a>**For Simulation**
 1. Create a catkin package
-   1. Go to `cd ~/catkin\_ws/src`
-   1. Do `catkin\_create\_pkg indoor\_nav rospy turtlesim geometry\_msgs sensor\_msgs std\_msgs`
-   1. Go back to `cd ~/catkin\_ws` 
-   1. Do `catkin\_make`
+   1. Go to `cd ~/catkin_ws/src`
+   1. Do `catkin_create_pkg indoor_nav rospy turtlesim geometry_msgs sensor_msgs std_msgs`
+   1. Go back to `cd ~/catkin_ws` 
+   1. Do `catkin_make`
 1. Put camFeed.py, velcmds.py and markers.launch (or any gazebo world) in your catkin package and make them executable files.
 1. In your terminal, run the following code:
-   1. `roslaunch indoor\_nav markers.launch`
-   1. `rosrun indoor\_nav cam.py`
-   1. `rosrun indoor\_nav navi.py`
+   1. `roslaunch indoor_nav markers.launch`
+   1. `rosrun indoor_nav cam.py`
+   1. `rosrun indoor_nav navi.py`
 
 ### <a name="_wwhunr977nm1"></a>**For Hardware**
 1. Create a catkin package in **both**, your docker container (ROS-melodic) as well as your main device (ROS-noetic)
-   1. Go to `cd ~/catkin\_ws/src`
-   1. Do `catkin\_create\_pkg indoor\_nav rospy turtlesim geometry\_msgs sensor\_msgs std\_msgs`
-   1. Go back to `cd ~/catkin\_ws `
-   1. Do `catkin\_make`
-1. Put lidar\_data.py code in your ROS-Noetic package and camera.py, MultiMatrix.npz, and navi.py code as well as a lidar\_data.txt file in your ROS-melodic package, and make these all executable files.
-1. Make sure to change calib\_data\_path in camera.py to MultiMatrix.npz path. Also, change lidar\_data\_path in lidar.py to the relative path of lidar\_data.txt to your ROS-noetic terminal, and in navi.py to the relative path to your container.
+   1. Go to `cd ~/catkin_ws/src`
+   1. Do `catkin_create_pkg indoor_nav rospy turtlesim geometry_msgs sensor_msgs std_msgs`
+   1. Go back to `cd ~/catkin_ws `
+   1. Do `catkin_make`
+1. Put lidar_data.py code in your ROS-Noetic package and camera.py, MultiMatrix.npz, and navi.py code as well as a lidar_data.txt file in your ROS-melodic package, and make these all executable files.
+1. Make sure to change calib_data_path in camera.py to MultiMatrix.npz path. Also, change lidar_data_path in lidar.py to the relative path of lidar_data.txt to your ROS-noetic terminal, and in navi.py to the relative path to your container.
 1. Connect your TurtleBot to your device and run the following code in your container:
-   1. `bash .devcontainer/post\_create\_commands.sh`
-   1. `roslaunch turtlebot\_bringup minimal.launch`
+   1. `bash .devcontainer/post_create_commands.sh`
+   1. `roslaunch turtlebot_bringup minimal.launch`
 1. In your ROS-noetic terminal, run the following code:
    1. `roscore`
-   1. `rosrun lidar\_data.py`
+   1. `rosrun lidar_data.py`
 1. In your container, run the following code:
    1. `roscore`
    1. `rosrun camera.py`
